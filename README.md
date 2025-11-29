@@ -1,70 +1,145 @@
-# Getting Started with Create React App
+# Course Scheduler
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack course scheduling application built with React and Node.js.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Student Dashboard**: Browse and register for courses
+- **Teacher Dashboard**: View assigned courses and enrolled students
+- **Admin Dashboard**: Manage courses, teachers, and system settings
+- **Authentication**: Secure login/register system
+- **Real-time Updates**: Backend API integration
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Frontend
+- React 19
+- React Router DOM
+- Tailwind CSS (via classes)
+- Lucide React (icons)
+- React Hot Toast (notifications)
+- Recharts (analytics)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Backend
+- Node.js
+- Express.js
+- JWT Authentication
+- bcryptjs (password hashing)
+- CORS enabled
 
-### `npm test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
+- Node.js >= 18.0.0
+- npm >= 8.0.0
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository:
+```bash
+git clone <your-repo-url>
+cd course-scheduler
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Install dependencies:
+```bash
+npm install
+cd backend && npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Start development servers:
+```bash
+npm run dev
+```
 
-### `npm run eject`
+This will start:
+- Frontend on http://localhost:5173
+- Backend on http://localhost:3001
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Production Build
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm run build
+npm run build:server
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Deployment
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Heroku
 
-## Learn More
+1. Create a Heroku app:
+```bash
+heroku create your-app-name
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Set environment variables:
+```bash
+heroku config:set NODE_ENV=production
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. Deploy:
+```bash
+git add .
+git commit -m "Deploy to Heroku"
+git push heroku main
+```
 
-### Code Splitting
+### Other Platforms
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The app is configured to work with any platform that supports Node.js:
+- Render
+- Railway
+- Vercel
+- Netlify
 
-### Analyzing the Bundle Size
+## Default Users
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **Admin**: admin@university.edu / 1234567890
+- **Teacher**: lakshman@teacher.edu / 1234567890  
+- **Student**: sreeja@student.edu / 1234567890
 
-### Making a Progressive Web App
+## API Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Authentication
+- `POST /api/auth/login` - User login
+- `POST /api/auth/register` - User registration
 
-### Advanced Configuration
+### Courses
+- `GET /api/courses` - Get all courses
+- `POST /api/courses` - Create course (admin only)
+- `PUT /api/courses/:id` - Update course (admin only)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Enrollments
+- `POST /api/enrollments` - Enroll in course
+- `GET /api/enrollments/student/:id` - Get student enrollments
 
-### Deployment
+## Project Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```
+course-scheduler/
+├── public/                 # React public files
+├── src/                   # React source code
+│   ├── components/        # Reusable components
+│   ├── pages/            # Page components
+│   ├── services/         # API services
+│   ├── context/          # React context
+│   └── data/             # Static data
+├── backend/              # Node.js backend
+│   ├── src/              # Server source
+│   ├── routes/           # API routes
+│   └── package.json      # Backend dependencies
+├── build/                # Production build
+└── package.json          # Frontend dependencies
+```
 
-### `npm run build` fails to minify
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License.
