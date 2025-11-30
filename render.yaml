@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: course-scheduler
+    env: node
+    buildCommand: npm run heroku-postbuild
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
