@@ -1,10 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const { connectDB } = require('./data');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+// Connect to MongoDB
+connectDB();
 
 // Middleware
 app.use(cors());
@@ -21,7 +25,7 @@ app.use('/api/enrollments', require('../routes/enrollments'));
 
 // Test route
 app.get('/api/test', (req, res) => {
-  res.json({ message: 'Backend is working!' });
+  res.json({ message: 'Backend is working with MongoDB!' });
 });
 
 // Serve React app for all other routes
@@ -32,4 +36,5 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
   console.log(`✅ API available at http://localhost:${PORT}/api`);
+  console.log(`✅ Database: MongoDB`);
 });
