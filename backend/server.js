@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const path = require('path');
 
 // Load environment variables
 dotenv.config();
@@ -22,6 +23,18 @@ app.use('/api/users', require('./routes/users'));
 app.use('/api/courses', require('./routes/courses'));
 app.use('/api/enrollments', require('./routes/enrollments'));
 app.use('/api/data', require('./routes/data'));
+
+// Serve static files from React build in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../build')));
+  
+  app.get('*', (req, res) => {
+    if (req.path.startsWith('/api')) {
+      return res.status(404).json({ message: 'API route not found' });
+    }
+    res.sendFile(path.join(__dirname, '../build', 'index.html'));
+  });
+}
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
